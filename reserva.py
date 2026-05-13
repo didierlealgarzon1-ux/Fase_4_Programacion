@@ -1,34 +1,26 @@
-from abc import ABC, abstractmethod
+class Reserva:
 
+    def __init__(self, cliente, servicio, tiempo):
 
-class Servicio(ABC):
+        if tiempo <= 0:
+            raise ValueError("Tiempo inválido")
 
-    def __init__(self, nombre, precio):
+        self.cliente = cliente
+        self.servicio = servicio
+        self.tiempo = tiempo
+        self.estado = "Pendiente"
 
-        if precio <= 0:
-            raise ValueError("El precio debe ser mayor a cero")
+    def confirmar(self):
 
-        self.nombre = nombre
-        self.precio = precio
+        self.estado = "Confirmada"
 
-    @abstractmethod
-    def calcular_costo(self, tiempo):
-        pass
+        total = self.servicio.calcular_costo(self.tiempo)
 
+        print(f"Reserva confirmada para {self.cliente.get_nombre()}")
+        print(f"Total a pagar: {total}")
 
-class ReservaSala(Servicio):
+    def cancelar(self):
 
-    def calcular_costo(self, horas):
-        return self.precio * horas
+        self.estado = "Cancelada"
 
-
-class AlquilerEquipo(Servicio):
-
-    def calcular_costo(self, dias):
-        return self.precio * dias
-
-
-class Asesoria(Servicio):
-
-    def calcular_costo(self, horas):
-        return self.precio * horas
+        print("Reserva cancelada")
