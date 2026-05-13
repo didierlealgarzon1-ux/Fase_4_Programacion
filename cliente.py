@@ -18,5 +18,15 @@ class Cliente:
     def get_nombre(self):
         return self.__nombre
 
+    def get_correo(self):
+        return self.__correo
+
+    def get_telefono(self):
+        return self.__telefono
+
     def mostrar_info(self):
-        return f"Cliente: {self.__nombre}"
+        return f"""
+Nombre: {self.__nombre}
+Correo: {self.__correo}
+Teléfono: {self.__telefono}
+"""
